@@ -15,10 +15,16 @@ fn main() {
                 println!("{n} bytes read");
                 println!("{guess}");
             }
-            Err(error) => println!("error: {error}"),
+            Err(error) => {
+                println!("error: {error}");
+                continue;
+            },
         }
 
-        let guess: u32 = guess.trim().parse().expect("请输入一个数字");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
         println!("你猜测的数字是:{}", guess);
         match  guess.cmp(&secret_number){
             Ordering::Less => println!("Too small"),
