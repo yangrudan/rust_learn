@@ -1,3 +1,5 @@
+#[derive(Debug)]
+
 struct User{
     username: String,
     email: String,
@@ -21,6 +23,7 @@ fn main() {
     };
 
     println!("{}", user.email);
+    //println!("{:#?}", user); // :? :#?
 
 
     user.email = String::from("154765@qq.com");
