@@ -10,7 +10,7 @@ fn main() {
     println!("{}", wordIndex)
 }
 
-fn first_world(s: &String) -> &str {
+fn first_world(s: &str) -> &str {
     let bytes = s.as_bytes();
 
     for(i, &item) in bytes.iter().enumerate(){
