@@ -23,9 +23,34 @@ fn main() {
     };
 
     println!("{}", user.email);
-    //println!("{:#?}", user); // :? :#?
+    println!("{:#?}", user); // :? :#?
 
 
     user.email = String::from("154765@qq.com");
+    user.active = false;
+    user.sign_in_count = 32;
+
+    let _color = Color(0,0,0);
+    let _position = Point(1, 1,1);
+
+    user.change_name(String::from("cookie"));
+    println!("{:#?}", user);
+
+    let default_user = User::default_user(String::from("XU"));
+    println!("{:#?}", default_user);
 }
 
+impl User{
+    fn change_name(&mut self, new_name:String) {
+        self.username = new_name;
+    }
+
+    fn default_user(name: String) -> User{
+        User{
+            username: name,
+            email: String::from("xxx"),
+            active:true,
+            sign_in_count: 32,
+        }
+    }
+}
