@@ -1,4 +1,5 @@
 fn main() {
+    //=========================枚举====================================
     let four = IpAddKind::V4(127,0,0,1);
     let six = IpAddKind::V6(String::from("::1"));
 
@@ -13,6 +14,12 @@ fn main() {
         kind: IpAddKind::V6(String::from("::1")),
         address: String::from("::1"),
     };
+
+    //=========================Option<T>====================================
+    let some_number = Some(5);
+    let some_string = Some("A String");
+
+    let absent_number: Option<i32> = None;
 }
 
 enum IpAddKind{
