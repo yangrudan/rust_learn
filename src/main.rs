@@ -1,39 +1,31 @@
-// Copyright (c) Cookie Yang. All right reserved.
-fn main() {
-    let mut _mutable_integer = 7i32;
+use std::convert::TryFrom;
+use std::convert::TryInto;
 
-    {
-        // 被不可变的 `_mutable_integer` 遮蔽
-        let _mutable_integer = _mutable_integer;
+#[derive(Debug, PartialEq)]
+struct EvenNumber(i32);
 
-        // 报错！`_mutable_integer` 在本作用域被冻结
-        // _mutable_integer = 50;
-        // 改正 ^ 注释掉上面这行
+impl TryFrom<i32> for EvenNumber {
+    type Error = ();
 
-        // `_mutable_integer` 离开作用域
-    }
-
-    // 正常运行！ `_mutable_integer` 在这个作用域没有冻结
-    _mutable_integer = 3;
-
-    use std::convert::From;
-
-    #[derive(Debug)]
-    struct Number {
-        value: i32,
-    }
-
-    impl From<i32> for Number {
-        fn from(item: i32) -> Self {
-            Number { value: item }
+    fn try_from(value: i32) -> Result<Self, Self::Error> {
+        if value % 2 == 0 {
+            Ok(EvenNumber(value))
+        } else {
+            Err(())
         }
     }
+}
 
-    let num = Number::from(30);
-    println!("My number is {:?}", num);
+fn main() {
+    // TryFrom
 
-    let int = 5;
-    // 试试删除类型说明
-    let num: Number = int.into();
-    println!("My number is {:?}", num);
+    assert_eq!(EvenNumber::try_from(8), Ok(EvenNumber(8)));
+    assert_eq!(EvenNumber::try_from(5), Err(()));
+
+    // TryInto
+
+    let result: Result<EvenNumber, ()> = 8i32.try_into();
+    assert_eq!(result, Ok(EvenNumber(8)));
+    let result: Result<EvenNumber, ()> = 5i32.try_into();
+    assert_eq!(result, Err(()));
 }
