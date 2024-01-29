@@ -1,3 +1,4 @@
+// Copyright (c) Cookie Yang. All right reserved.
 mod checked {
     // 我们想要捕获的数学 “错误”
     #[derive(Debug)]
