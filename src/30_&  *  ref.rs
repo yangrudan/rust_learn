@@ -1,3 +1,4 @@
+// Copyright (c) Cookie Yang. All right reserved.
 fn main() {
     // 获得一个 `i32` 类型的引用。`&` 表示取引用。
     let reference = &4;
