@@ -1,3 +1,4 @@
+// Copyright (c) Cookie Yang. All right reserved.
 use std::collections::HashMap;
 
 fn call(number: &str) -> &str {
