@@ -26,14 +26,3 @@ enum SpreadSheetCell {
     Float(f64),
     Text(String),
 }
-
-////string
-fn main() {
-    let s = String::new();
-
-    let mut s = "initial ".to_string();
-
-    s.push_str("data");
-
-    println!("{s}");
-}
