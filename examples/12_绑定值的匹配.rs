@@ -4,13 +4,13 @@
 fn main() {
     let c = Coin::Quarter(UsState::Alabama);
     println!("{}", value_in_cents(c));
+    let _d = Coin::Penny;
+    let _e = Coin::Quarter(UsState::Alaska);
 }
 
-#[derive(Debug)]
+#[warn(dead_code)]
 enum Coin {
     Penny,
-    Nickle,
-    Dime,
     Quarter(UsState), //关联一个数据
 }
 
@@ -26,8 +26,6 @@ fn value_in_cents(coin: Coin) -> u8 {
             println!("Penny");
             1
         }
-        Coin::Nickle => 5,
-        Coin::Dime => 10,
         Coin::Quarter(state) => {
             println!("State quarter from {:?}!", state);
             25
