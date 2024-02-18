@@ -1,5 +1,5 @@
 fn main() {
-    const MAX_POINT: i32 = 100;  // 常量
+    const MAX_POINT: i32 = 100; // 常量
     println!("{MAX_POINT}");
 
     let x = 5;
@@ -17,7 +17,7 @@ fn main() {
     // 模式匹配destructure一个Tuple
     let (_a, _b) = tup;
 
-    let _a: [i32; 5] = [1,2,3,4,5];
+    let _a: [i32; 5] = [1, 2, 3, 4, 5];
     let _b = [3; 5];
     let index = _b[1];
     println!("{index}");

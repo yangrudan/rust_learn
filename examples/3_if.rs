@@ -10,6 +10,6 @@ fn main() {
     }
 
     let condition = true;
-    let number = if condition { 6 } else {5};  // 三元运算符
+    let number = if condition { 6 } else { 5 }; // 三元运算符
     println!(" the value is {}", number)
 }

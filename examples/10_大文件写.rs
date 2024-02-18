@@ -8,7 +8,7 @@ fn main() {
     println!("将要写入{}行", n);
 
     let mut file = File::create("data/a.txt").unwrap();
-    for line in Lines::new().take(n){
+    for line in Lines::new().take(n) {
         println!("{line}");
         file.write_all(line.as_bytes()).unwrap();
     }
@@ -17,15 +17,15 @@ fn main() {
 struct Lines(usize);
 
 impl Lines {
-    fn new() -> Lines{
+    fn new() -> Lines {
         Lines(0)
     }
 }
 
-impl Iterator for Lines{
+impl Iterator for Lines {
     type Item = String;
     fn next(&mut self) -> Option<String> {
-        let n:usize = 10000000000 + self.0;
+        let n: usize = 10000000000 + self.0;
         self.0 += 1;
         let line = format!("{}\n", n);
         Some(line)
