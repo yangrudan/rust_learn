@@ -1,4 +1,5 @@
 // Copyright (c) Cookie Yang. All right reserved.
+// cargo run data/poem.txt
 
 use std::collections::HashMap;
 use std::env;
