@@ -40,10 +40,12 @@ fn main() {
 
 impl User {
     fn change_name(&mut self, new_name: String) {
+        //实例方法
         self.username = new_name;
     }
 
     fn default_user(name: String) -> User {
+        //关联方法
         User {
             username: name,
             email: String::from("xxx"),
