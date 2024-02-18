@@ -5,7 +5,7 @@ fn main() {
     let c = Coin::Quarter(UsState::Alabama);
     println!("{}", value_in_cents(c));
     let _d = Coin::Penny;
-    let _e = Coin::Quarter(UsState::Alaska);
+    let _e = Coin::Quarter(UsState::Alaska); //TODO 如果enum就有一些数值用不上咋办?
 }
 
 #[warn(dead_code)]

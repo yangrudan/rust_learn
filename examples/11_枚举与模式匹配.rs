@@ -36,7 +36,7 @@ struct IpAddr {
 impl IpAddKind {
     fn show_type(&self) {
         match self {
-            IpAddKind::V4(_, _, _, _) => println!("This is type 4 {:?}", *self), //enum里的元组怎么打印第一个元素?
+            IpAddKind::V4(_, _, _, _) => println!("This is type 4 {:?}", *self), //TODO enum里的元组怎么打印第一个元素?
             IpAddKind::V6(_) => println!("This is type 6"),
         }
     }
