@@ -1,3 +1,4 @@
+// Copyright (c) Cookie Yang. All right reserved.
 ///将代码中类型的共享行为和公共属性与其自身隔离开
 struct Audio(String);
 struct Video(String);
