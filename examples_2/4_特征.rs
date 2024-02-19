@@ -1,4 +1,3 @@
-// Copyright (c) Cookie Yang. All right reserved.
 ///将代码中类型的共享行为和公共属性与其自身隔离开
 struct Audio(String);
 struct Video(String);
@@ -56,6 +55,57 @@ impl Vehicle for TeslaRoadster {
     }
 }
 
+struct Game;
+struct Enemy;
+struct Hero;
+
+trait Loadable {
+    fn init(&self);
+}
+
+impl Loadable for Enemy {
+    fn init(&self) {
+        println!("Enemy is loaded");
+    }
+}
+
+impl Loadable for Hero {
+    fn init(&self) {
+        println!("Hero is loaded");
+    }
+}
+
+impl Game {
+    fn load<T: Loadable>(&self, entity: T) {
+        entity.init();
+    }
+}
+
+use std::fmt::Debug;
+
+trait Eatable {
+    fn eat(&self);
+}
+
+#[derive(Debug)]
+struct Food<T>(T);
+
+#[derive(Debug)]
+struct Apple;
+
+impl<T> Eatable for Food<T>
+where
+    T: Debug,
+{
+    fn eat(&self) {
+        println!("Eating {:?}", self);
+    }
+}
+
+fn eat<T: Eatable>(val: T) {
+    val.eat();
+}
+
 fn main() {
     let audio = Audio("xxx.mp3".to_string());
     let vidio = Audio("xxx.mkv".to_string());
@@ -68,4 +118,11 @@ fn main() {
         my_roadster.model,
         my_roadster.get_price()
     );
+
+    let game = Game;
+    game.load(Enemy);
+    game.load(Hero);
+
+    let apple = Food(Apple);
+    eat(apple);
 }

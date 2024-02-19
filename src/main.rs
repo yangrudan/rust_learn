@@ -81,6 +81,31 @@ impl Game {
     }
 }
 
+use std::fmt::Debug;
+
+trait Eatable {
+    fn eat(&self);
+}
+
+#[derive(Debug)]
+struct Food<T>(T);
+
+#[derive(Debug)]
+struct Apple;
+
+impl<T> Eatable for Food<T>
+where
+    T: Debug,
+{
+    fn eat(&self) {
+        println!("Eating {:?}", self);
+    }
+}
+
+fn eat<T: Eatable>(val: T) {
+    val.eat();
+}
+
 fn main() {
     let audio = Audio("xxx.mp3".to_string());
     let vidio = Audio("xxx.mkv".to_string());
@@ -97,4 +122,7 @@ fn main() {
     let game = Game;
     game.load(Enemy);
     game.load(Hero);
+
+    let apple = Food(Apple);
+    eat(apple);
 }
