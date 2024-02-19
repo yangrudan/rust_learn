@@ -55,6 +55,32 @@ impl Vehicle for TeslaRoadster {
     }
 }
 
+struct Game;
+struct Enemy;
+struct Hero;
+
+trait Loadable {
+    fn init(&self);
+}
+
+impl Loadable for Enemy {
+    fn init(&self) {
+        println!("Enemy is loaded");
+    }
+}
+
+impl Loadable for Hero {
+    fn init(&self) {
+        println!("Hero is loaded");
+    }
+}
+
+impl Game {
+    fn load<T: Loadable>(&self, entity: T) {
+        entity.init();
+    }
+}
+
 fn main() {
     let audio = Audio("xxx.mp3".to_string());
     let vidio = Audio("xxx.mkv".to_string());
@@ -67,4 +93,8 @@ fn main() {
         my_roadster.model,
         my_roadster.get_price()
     );
+
+    let game = Game;
+    game.load(Enemy);
+    game.load(Hero);
 }
