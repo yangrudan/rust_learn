@@ -61,6 +61,7 @@ fn main() {
     println!("====end")
 }
 
+// 方法2
 trait AnyNamed {
     fn name(&self) -> &'static str {
         std::any::type_name::<Self>()
@@ -74,6 +75,7 @@ fn type_name_dyn(val: &dyn AnyNamed) {
     println!("{}", val.name());
 }
 
+// 方法3
 fn type_name_of_val<T: ?Sized>(_: &T) -> &'static str {
     std::any::type_name::<T>()
 }

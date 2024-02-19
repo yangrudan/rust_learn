@@ -1,38 +1,29 @@
-fn give_me<T: std::fmt::Display>(value: T) {
-    let a = value;
-    println!("{}", a);
-}
+///将代码中类型的共享行为和公共属性与其自身隔离开
+struct Audio(String);
+struct Video(String);
 
-struct Container<T> {
-    item: T,
-}
-
-impl<T> Container<T> {
-    fn new(item: T) -> Self {
-        Container { item }
+trait Playable {
+    fn play(&self);
+    fn pause() {
+        println!("Paused");
     }
 }
 
-impl Container<u32> {
-    fn sum(item: u32) -> Self {
-        println!("hello");
-        Container { item }
+impl Playable for Audio {
+    fn play(&self) {
+        println!("Now is Audio {} playing!", self.0);
+    }
+}
+
+impl Playable for Video {
+    fn play(&self) {
+        println!("Now is Video {} playing!", self.0);
     }
 }
 
 fn main() {
-    let a = "aaa";
-    let b = 1;
-    give_me(a);
-    give_me(b);
-
-    let _c = Container::sum(32u32);
-    let _d = Container::new(true);
-
-    let v1: Vec<u8> = Vec::new();
-
-    let mut v2 = Vec::new();
-    v2.push(2);
-
-    let v3 = Vec::<u32>::new();
+    let audio = Audio("xxx.mp3".to_string());
+    let vidio = Audio("xxx.mkv".to_string());
+    audio.play();
+    vidio.play();
 }
