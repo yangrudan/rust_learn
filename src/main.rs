@@ -1,50 +1,46 @@
-// Copyright (c) Cookie Yang. All right reserved.
+mod use_macro;
 
-use std::collections::HashMap;
-use std::env;
-use std::fs::File;
-use std::io::prelude::BufRead;
-use std::io::BufReader;
+use use_macro::type_name_of;
 
-#[derive(Debug)]
-struct WordCounter(HashMap<String, u64>);
+pub type Sum = u8;
 
-impl WordCounter {
-    fn new() -> WordCounter {
-        WordCounter(HashMap::new())
-    }
+struct MyStruct(i32);
 
-    fn increment(&mut self, word: &str) {
-        let key = word.to_string();
-        let count = self.0.entry(key).or_insert(0);
-        *count += 1;
-    }
+fn main() {
+    let it = (vec![()], 42);
+    drop(it.0);
+    dbg!(type_name_of!(it));
+    let a: u8 = 1;
+    dbg!(type_name_of!(a));
+    let b: Sum = 8;
+    dbg!(type_name_of!(b));
+    let c = MyStruct(1);
 
-    fn display(self) {
-        for (key, value) in self.0.iter() {
-            println!("{}: {}", key, value);
-        }
+    type_name_dyn(&"abcd".to_owned()); // alloc::string::String
+    type_name_dyn(&100u8); // u8
+    type_name_dyn(&10.0f32); // f32
+    type_name_dyn(&a);
+    type_name_dyn(&b);
+    type_name_dyn(&c);
+
+    println!("{}", type_name_of_val(&c));
+
+    println!("====end")
+}
+
+trait AnyNamed {
+    fn name(&self) -> &'static str {
+        std::any::type_name::<Self>()
     }
 }
 
-fn main() {
-    let arguments: Vec<String> = env::args().collect();
-    let filename = &arguments[1];
-    println!("Processing file : {}", filename);
-    let file = File::open(filename).expect("Could not open the file");
-    let reader = BufReader::new(file);
-    let mut word_counter = WordCounter::new();
+impl<T: ?Sized> AnyNamed for T {}
 
-    for line in reader.lines() {
-        let line = line.expect("Could not read the line");
-        let words = line.split(' ');
-        for word in words {
-            if word == "" {
-                continue;
-            } else {
-                word_counter.increment(word);
-            }
-        }
-    }
-    word_counter.display();
+fn type_name_dyn(val: &dyn AnyNamed) {
+    //指向动态trait
+    println!("{}", val.name());
+}
+
+fn type_name_of_val<T: ?Sized>(_: &T) -> &'static str {
+    std::any::type_name::<T>()
 }
