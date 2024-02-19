@@ -28,4 +28,11 @@ fn main() {
 
     let _c = Container::sum(32u32);
     let _d = Container::new(true);
+
+    let v1: Vec<u8> = Vec::new();
+
+    let mut v2 = Vec::new();
+    v2.push(2);
+
+    let v3 = Vec::<u32>::new();
 }
