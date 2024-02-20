@@ -32,8 +32,6 @@ fn main() {
     give_commoner(void);
 
     let bird = Some("robin");
-    let nothing = None;
 
     give_princess(bird);
-    give_princess(nothing);
 }
