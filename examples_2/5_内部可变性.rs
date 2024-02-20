@@ -1,3 +1,4 @@
+// Copyright (c) Cookie Yang. All right reserved.
 fn main() {
     let p = Point {
         x: 8,
