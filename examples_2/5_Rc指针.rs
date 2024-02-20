@@ -1,3 +1,4 @@
+// Copyright (c) Cookie Yang. All right reserved.
 use std::cell::RefCell;
 use std::rc::Rc;
 use std::rc::Weak;
@@ -55,8 +56,7 @@ fn main() {
     ///引用计数
     let list_of_number = LinkedList::new().append(1).append(2);
     println!("{:?}", list_of_number);
-    //LinkedList { head: Some(Node { next: Some(Node { next: None, prev: RefCell { value: Some((Weak)) }, data: 1 }), prev: RefCell { value: None }, data: 2 }) }
-    // LinkedList { head: Some(Node { head: Some(Node { head: None, data: 1 }), data: 2 }) }
+
     println!("end");
 }
 
