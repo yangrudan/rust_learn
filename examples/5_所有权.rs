@@ -28,4 +28,4 @@ fn takes_ownership(some_string: String) {
 fn makes_copy(some_integer: i32) {
     // some_integer 进入作用域
     println!("{}", some_integer);
-} // 这里，some_integer 移出作用域。不会有特殊操作
+} // 这里，some_integer 移出作用域。不会有特殊操作..
